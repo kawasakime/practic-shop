@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
+import { config } from "../configs/config";
 
 export default createGlobalStyle`
   * {
@@ -6,6 +7,7 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     outline: none;
+    color: ${config.colors.primary};
   }
 
   *::before,
@@ -14,9 +16,10 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 16px;
+    background: ${config.colors.secondary};
   }
 
   a {
@@ -30,4 +33,4 @@ export default createGlobalStyle`
   table {
     margin: 0;
   }
-`
+`;
