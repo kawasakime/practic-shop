@@ -6,8 +6,13 @@ import Search from "../UI/Search";
 import { config } from "../../configs/config";
 import CartButton from "../UI/CartButton";
 import { Link } from "react-router-dom";
+import Vk from "../UI/Socials/Vk";
+import Telegram from "../UI/Socials/Telegram";
+import Instagram from "../UI/Socials/Instagram";
 
 const Header: React.FunctionComponent = (props) => {
+  const { social } = config;
+
   return (
     <S.Header>
       <C.Wrapper>
@@ -33,6 +38,11 @@ const Header: React.FunctionComponent = (props) => {
           </S.Navigation>
           <S.Contacts>
             {config.information.phone}
+            <S.Social>
+              {!!social.vk && <Vk link={social.vk} />}
+              {!!social.telegram && <Telegram link={social.telegram} />}
+              {!!social.instagram && <Instagram link={social.instagram} />}
+            </S.Social>
           </S.Contacts>
         </S.Container>
       </C.Wrapper>

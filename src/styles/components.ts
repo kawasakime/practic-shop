@@ -11,3 +11,12 @@ export const Wrapper = styled.div`
   padding: 0 10px;
   margin: 0 auto;
 `;
+
+export const SocialItem = styled.a`
+
+  cursor: pointer;
+  svg {
+    height: 15px;
+    width: auto;
+  }
+`;

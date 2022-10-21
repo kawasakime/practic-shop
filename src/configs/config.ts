@@ -10,6 +10,12 @@ export const config = {
     email: "scissors@shop",
     workTime: "Пн. - Вс. 10:00 - 21:00",
   },
+  // Ссылки на соцсети, либо false
+  social: {
+    vk: "https://vk.com/",
+    telegram: "https://web.telegram.org/k/",
+    instagram: "https://www.instagram.com/",
+  },
   navigation: [
     {
       title: "Главная",
