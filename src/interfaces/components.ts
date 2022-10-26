@@ -24,6 +24,7 @@ export interface ICartItem {
   title: string;
   sale: boolean;
   prices: [number, number | undefined];
+  count: number;
 }
 
 export interface AddToCartBtnProps {

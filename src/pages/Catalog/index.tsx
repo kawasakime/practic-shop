@@ -40,8 +40,8 @@ const Catalog: React.FC = () => {
                       title: item.title,
                       sale: !!item.salePrice,
                       prices: [item.price, item.salePrice],
-                    }}
-                  >
+                      count: 1,
+                    }}>
                     <AiOutlineShoppingCart /> В корзину
                   </AddToCartBtn>
                 </div>

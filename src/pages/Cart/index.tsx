@@ -4,8 +4,6 @@ import * as S from "./styles";
 import * as C from "../../styles/components";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
-import { products } from "../../configs/products";
-
 import { AiOutlineClose } from "react-icons/ai";
 import { ICartItem } from "../../interfaces/components";
 import { addProduct, removeProduct } from "../../redux/cartSlice";
@@ -42,7 +40,7 @@ const Cart: React.FC = () => {
                         -
                       </div>
                       <p>
-                        {cartProducts.filter((e) => e.id === item.id).length}
+                        {item.count}
                       </p>
                       <div
                         className="plus"
