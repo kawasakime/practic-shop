@@ -8,6 +8,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
     outline: none;
     color: ${config.colors.primary};
+    font-family: 'Montserrat', sans-serif;
   }
 
   *::before,

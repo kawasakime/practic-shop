@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const CartButton = styled.a`
+export const CartButton = styled(Link)`
   position: relative;
   border: 1px solid ${({ theme }) => theme.colors.primary};
   transition: ${({ theme }) => theme.duration};

@@ -1,18 +1,16 @@
 import * as React from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Mailing from "../components/Mailing";
 import Main from "../components/Main";
+import MiniCategories from "../components/MiniCategories";
+import { config } from "../configs/config";
 
-// interface HomeProps {
-// }
-
-const Home: React.FunctionComponent = (props) => {
+const Home: React.FunctionComponent = () => {
   return (
-    <div>
-      <Header />
+    <>
       <Main />
-      <Footer />
-    </div>
+      <MiniCategories />
+      {config.mailing.enable && <Mailing />}
+    </>
   );
 };
 
