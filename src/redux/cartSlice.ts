@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { ICartItem } from "../interfaces/components";
 
-export interface CounterState {
+export interface ICartSlice {
   products: ICartItem[];
 }
 
-const initialState: CounterState = {
-  products: [],
+const initialState: ICartSlice = {
+  products: !!localStorage.getItem("cart")
+    ? (JSON.parse(localStorage.getItem("cart") || "") as ICartItem[])
+    : [],
 };
 
 export const cartSlice = createSlice({
@@ -15,22 +17,35 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<ICartItem>) => {
-      const element = state.products.find((e) => e.id === action.payload.id);
-      console.log(element);
+      const element = state.products.find(
+        (item) => item.id === action.payload.id
+      );
       !!element
-        ? (state.products = state.products.map((e) =>
-            e.id === action.payload.id ? { ...element, count: ++element.count } : e
-          ))
+        ? state.products.map((item) =>
+            item.id === action.payload.id
+              ? { ...element, count: ++element.count }
+              : item
+          )
         : state.products.push(action.payload);
     },
-    removeProduct: (state, action: PayloadAction<number>) => {
-      const index = state.products.findIndex((item) => item.id === action.payload);
+    removeOneProduct: (state, action: PayloadAction<number>) => {
+      state.products.map((item) =>
+        item.id === action.payload ? --item.count : item
+      );
+    },
+    removeAllProducts: (state, action: PayloadAction<number>) => {
+      const index = state.products.findIndex(
+        (item) => item.id === action.payload
+      );
 
-      state.products = [...state.products.slice(0, index), ...state.products.slice(index + 1)];
+      state.products = [
+        ...state.products.slice(0, index),
+        ...state.products.slice(index + 1),
+      ];
     },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { addProduct, removeProduct } = cartSlice.actions;
+export const { addProduct, removeAllProducts, removeOneProduct } =
+  cartSlice.actions;
 export default cartSlice.reducer;

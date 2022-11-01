@@ -11,7 +11,7 @@ import Social from "../Social";
 
 const Header: React.FunctionComponent = () => {
   const location = useLocation().pathname;
-  
+
   return (
     <S.Header>
       <C.Wrapper>

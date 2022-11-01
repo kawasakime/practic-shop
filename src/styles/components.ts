@@ -15,6 +15,11 @@ export const Social = styled.div<{ marginLeft: string }>`
 export const SocialItem = styled.a`
   cursor: pointer;
   margin: 0 5px;
+  transition: opacity ${({ theme }) => theme.duration};
+
+  &:hover {
+    opacity: 0.7;
+  }
 
   &:first-child {
     margin-left: 0;
@@ -27,10 +32,6 @@ export const SocialItem = styled.a`
   svg {
     height: 18px;
     width: 18px;
-  }
-
-  &:hover {
-    opacity: 0.7;
   }
 `;
 
@@ -116,9 +117,79 @@ export const SalePrice = styled.span`
   color: ${({ theme }) => theme.colors.primary}50;
   text-decoration: line-through;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+  white-space: nowrap;
 `;
 
 export const MainPrice = styled.h3`
   font-size: 18px;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+  white-space: nowrap;
+`;
+
+export const Input = styled.input<{ width: string }>`
+  height: 40px;
+  width: ${({ width }) => width};
+  border-radius: 2px;
+  background: ${({ theme }) => theme.colors.primary}10;
+  border: none;
+  padding: 0 15px;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const OrderBtn = styled(Link)`
+  display: grid;
+  place-items: center;
+  border: none;
+  background: ${({ theme }) => theme.colors.teriary};
+  color: ${({ theme }) => theme.colors.secondary};
+  width: 100%;
+  height: 40px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity ${({ theme }) => theme.duration};
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const InputField = styled.label<{ gridColumn: string }>`
+  font-size: 15px;
+  grid-column: ${({ gridColumn }) => gridColumn};
+
+  input,
+  textarea {
+    margin-top: 5px;
+  }
+
+  textarea {
+    display: block;
+    border-radius: 2px;
+    background-color: ${({ theme }) => theme.colors.primary}10;
+    border: none;
+    width: 100%;
+    min-height: 120px;
+    resize: none;
+    padding: 15px;
+  }
+`;
+
+export const OrderSection = styled.div`
+  box-shadow: 0px 0px 4px ${({ theme }) => theme.colors.primary}25;
+  border-radius: 15px;
+  height: fit-content;
+
+  header {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.primary}25;
+    padding: 16px 27px;
+    font-size: 15px;
+    font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+  }
+
+  .content {
+    padding: 30px;
+  }
 `;

@@ -18,9 +18,11 @@ export const ProductsList = styled.div`
 `;
 
 export const ProductItem = styled.div`
-  padding: 20px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
+  cursor: pointer;
+
+  padding: 20px;
 
   img {
     width: 100%;

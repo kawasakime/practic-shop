@@ -1,18 +1,20 @@
 import React from "react";
 import { AddToCartBtnProps } from "../../../interfaces/components";
 import { addProduct } from "../../../redux/cartSlice";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 
 import * as S from "./styles";
 
-const AddToCartBtn: React.FC<AddToCartBtnProps> = ({ children, item }) => {
+const AddToCartBtn = React.forwardRef<
+  HTMLButtonElement,
+  AddToCartBtnProps
+>(({ children, item, width = "120px", height = "33px" }, ref) => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector(state => state.cart.products)
   const [isActive, setIsActive] = React.useState(false);
 
-  const handleOnClick = () => {
+  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     dispatch(addProduct(item));
-    console.log(products)
     setIsActive(true);
     setTimeout(() => {
       setIsActive(false);
@@ -21,12 +23,15 @@ const AddToCartBtn: React.FC<AddToCartBtnProps> = ({ children, item }) => {
 
   return (
     <S.AddToCartBtn
+      ref={ref}
+      width={width}
+      height={height}
       className={isActive ? "active" : undefined}
       onClick={handleOnClick}
     >
       {isActive ? "Добавлено" : children}
     </S.AddToCartBtn>
   );
-};
+});
 
 export default AddToCartBtn;

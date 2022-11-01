@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import Catalog from "./pages/Catalog";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
+import Order from "./pages/Order";
 
 function App() {
   return (
@@ -19,10 +20,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/catalog" element={<Catalog />}>
-          <Route path="/catalog/:productId" element={<Product />} />
-        </Route>
+        <Route path="/catalog" element={<Catalog />} />
+        <Route path="/catalog/:productId" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={<Order />} />
         <Route path="/products" element={<div></div>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const AddToCartBtn = styled.button`
-  width: 120px;
-  height: 33px;
+export const AddToCartBtn = styled.button<{ width: string; height: string }>`
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   background: #bc9f75;
   border-radius: 5px;
   color: ${({ theme }) => theme.colors.secondary};
@@ -11,9 +11,15 @@ export const AddToCartBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
   transition: opacity ${({ theme }) => theme.duration};
 
+  &:hover {
+    opacity: 0.7;
+  }
+
   svg {
+    pointer-events: none;
     margin-right: 5px;
     height: 17px;
     width: 17px;
@@ -22,9 +28,5 @@ export const AddToCartBtn = styled.button`
 
   &.active {
     pointer-events: none;
-  }
-
-  &:hover {
-    opacity: 0.7;
   }
 `;

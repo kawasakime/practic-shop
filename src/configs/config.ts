@@ -1,3 +1,5 @@
+import { IConfig } from "../interfaces/components";
+
 export type TCategories =
   | "scissors"
   | "combs"
@@ -7,7 +9,7 @@ export type TCategories =
   | "razors"
   | "other";
 
-export const config = {
+export const config: IConfig = {
   // Название сайта (название вкладки в браузере)
   title: "Scissors Shop",
   // Цвета
@@ -21,6 +23,7 @@ export const config = {
     phone: "+7 (900) 999 99 99",
     email: "scissors@shop",
     workTime: "Пн. - Вс. 10:00 - 21:00",
+    address: "г. Ростов-на-Дону Ворошиловский проспект 10",
   },
   // Ссылки на соцсети, либо false
   social: {
@@ -104,4 +107,8 @@ export const config = {
     title: "Подпишитесь на рассылку и получите 15% скидку на первый заказ",
     btnText: "Подписаться",
   },
+  cart: {
+    maxProductsCount: 10,
+  },
+  deliveryCost: 350,
 };

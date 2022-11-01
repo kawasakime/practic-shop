@@ -4,9 +4,13 @@ import * as S from "./styles";
 import * as C from "../../styles/components";
 import { config } from "../../configs/config";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { setActiveCategory } from "../../redux/filterSlice";
 
 const MiniCategories: React.FC = () => {
   const { categories } = config;
+
+  const dispatch = useAppDispatch();
 
   return (
     <S.MiniCategories>
@@ -20,9 +24,10 @@ const MiniCategories: React.FC = () => {
             (item, i) =>
               i < 6 && (
                 <C.CategoryItem
-                  to={`/${item.name}`}
+                  to={`/catalog`}
                   key={i}
                   className={i < 2 ? "big" : undefined}
+                  onClick={() => dispatch(setActiveCategory(item.name))}
                 >
                   <h2>{item.title}</h2>
                   <img src={`./assets/img/categories/${item.img}`} alt="" />
