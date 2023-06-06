@@ -7,11 +7,7 @@ import * as S from "./styles";
 import * as C from "../../styles/components";
 import AddToCartBtn from "../../components/UI/AddToCartBtn";
 
-import {
-  AiFillCaretDown,
-  AiFillCaretUp,
-  AiFillCloseCircle,
-} from "react-icons/ai";
+import { AiFillCaretDown, AiFillCaretUp, AiFillCloseCircle } from "react-icons/ai";
 
 const Product = () => {
   const { productId } = useParams();
@@ -27,9 +23,13 @@ const Product = () => {
   const [topPosition, setTopPosition] = React.useState<number>(0);
 
   function toggleFullScreenImg() {
-    fullImgIsOpen
-      ? (document.body.style.overflow = "auto")
-      : (document.body.style.overflow = "hidden");
+    if (fullImgIsOpen) {
+      document.body.style.overflow = "auto";
+    } else {
+      document.documentElement.scrollTop = 0;
+      document.body.style.overflow = "hidden";
+    }
+
     setFullImgIsOpen((prev) => !prev);
   }
 
@@ -46,15 +46,13 @@ const Product = () => {
                   className={file === activeImg ? "active" : undefined}
                   key={i}
                   img={`${imgPath}/${file}`}
-                  onClick={() => setActiveImg(file)}
-                ></S.SmallImg>
+                  onClick={() => setActiveImg(file)}></S.SmallImg>
               ))}
             </S.SmallImagesContainer>
           </S.SmallImages>
           <S.BigImg
             onClick={() => toggleFullScreenImg()}
-            img={`${imgPath}/${activeImg}`}
-          ></S.BigImg>
+            img={`${imgPath}/${activeImg}`}></S.BigImg>
           {currentProduct.imgs.files.length > 3 && (
             <S.SlidersBtns>
               <AiFillCaretDown
@@ -89,10 +87,7 @@ const Product = () => {
               <span className="salePrice">{currentProduct.price} ₽</span>
             )}
             <span className="price">
-              {!!currentProduct.salePrice
-                ? currentProduct.salePrice
-                : currentProduct.price}{" "}
-              ₽
+              {!!currentProduct.salePrice ? currentProduct.salePrice : currentProduct.price} ₽
             </span>
           </div>
           <AddToCartBtn
@@ -103,28 +98,22 @@ const Product = () => {
               imgUrl: `${currentProduct.imgs.folder}/${currentProduct.imgs.files[0]}`,
               title: currentProduct.title,
               price: currentProduct.price,
-              salePrice: !!currentProduct.salePrice
-                ? currentProduct.salePrice
-                : 0,
+              salePrice: !!currentProduct.salePrice ? currentProduct.salePrice : 0,
               count: 1,
-            }}
-          >
+            }}>
             В корзину
           </AddToCartBtn>
         </S.InfoContainer>
-        {fullImgIsOpen && (
-          <S.FullScreenImg>
-            <div className="bg" onClick={() => toggleFullScreenImg()}></div>
-            <div className="img-container">
-              <img src={`${imgPath}/${activeImg}`} alt="" />
-              <AiFillCloseCircle
-                onClick={() => toggleFullScreenImg()}
-                className="close"
-              />
-            </div>
-          </S.FullScreenImg>
-        )}
       </C.Wrapper>
+      {fullImgIsOpen && (
+        <S.FullScreenImg>
+          <div className="bg" onClick={() => toggleFullScreenImg()}></div>
+          <div className="img-container">
+            <img src={`${imgPath}/${activeImg}`} alt="" />
+            <AiFillCloseCircle onClick={() => toggleFullScreenImg()} className="close" />
+          </div>
+        </S.FullScreenImg>
+      )}
     </S.Product>
   );
 };

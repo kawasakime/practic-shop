@@ -1,0 +1,59 @@
+//1 задание
+const str1 = "Привет, ";
+const str2 = "Мир!";
+
+console.log(str1 + str2);
+
+//2 задание
+const a = 10;
+
+if (a === 10) {
+  console.log("Верно");
+} else {
+  console.log("Неверно");
+}
+
+//3 задание
+for (let i = 0; i <= 100; i += 2) {
+  console.log(i);
+}
+
+//4 задание
+let myStr = "aaa bbb ccc";
+//---1 способ
+myStr = myStr.replace("bbb", "");
+console.log(myStr);
+//---2 способ
+myStr = "aaa bbb ccc";
+myStr = myStr.substring(0, 4) + myStr.substring(7);
+console.log(myStr);
+//---3 способ
+myStr = "aaa bbb ccc";
+const arr = myStr.split(" ");
+myStr = [arr[0], arr[2]].join(" ");
+console.log(myStr);
+
+//5 задание
+const arrNumbers = [1, 2, 3, 4, 5];
+
+arrNumbers.splice(3, 0, "a");
+arrNumbers.splice(4, 0, "b");
+arrNumbers.splice(5, 0, "c");
+
+console.log(arrNumbers);
+
+//6 задание
+function arrayFill(value, size) {
+  return Array(size).fill(value);
+}
+
+console.log(arrayFill("x", 5));
+
+//7 задание
+const myArray = [3, 2, 7, 10];
+let sum = 0;
+
+for (let i = 0; i < myArray.length; i++) {
+  sum += myArray[i];
+}
+console.log(sum / myArray.length);

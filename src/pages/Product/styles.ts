@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Product = styled.div`
+  position: inherit;
   padding: 40px 0 150px 0;
 
   .wrapper {
@@ -11,7 +12,6 @@ export const Product = styled.div`
 export const ImagesContainer = styled.div`
   position: relative;
   display: flex;
-  align-items: center;
   margin-right: 35px;
 `;
 
@@ -70,11 +70,13 @@ export const InfoContainer = styled.div`
 
   p {
     text-align: justify;
+    white-space: pre-line;
   }
 
   ul {
     margin-top: 24px;
     li {
+      margin-bottom: 10px;
       span {
         font-weight: ${({ theme }) => theme.fontWeight.semiBold};
       }
@@ -131,14 +133,14 @@ export const FullScreenImg = styled.div`
   position: absolute;
   height: 100vh;
   width: 100%;
-  
+
   display: grid;
   place-items: center;
 
   .bg {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     top: 0;
     left: 0;
     background: #00000080;
@@ -154,7 +156,7 @@ export const FullScreenImg = styled.div`
       position: absolute;
       right: 30px;
       top: 30px;
-      transition: opacity ${({theme}) => theme.duration};
+      transition: opacity ${({ theme }) => theme.duration};
 
       &:hover {
         opacity: 0.7;

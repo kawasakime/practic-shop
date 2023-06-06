@@ -17,8 +17,10 @@ const Header: React.FunctionComponent = () => {
       <C.Wrapper>
         <S.Container>
           <S.Block>
-            <img src={window.location.origin + "/assets/img/logo.png"} alt="" />
-            {(location === "/" || location === "/catalog") && <Search />}
+            <Link to="/">
+              <img src={window.location.origin + "/assets/img/logo.png"} alt="" />
+            </Link>
+            {location === "/" && <Search />}
             <S.Information>
               {config.information.email}
               <br />

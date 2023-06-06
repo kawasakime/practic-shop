@@ -3,31 +3,32 @@ import React from "react";
 import * as S from "./styles";
 import * as C from "../../styles/components";
 
-import { AiOutlineShoppingCart } from "react-icons/ai";
-
 import ProductsFilter from "../../components/ProductsFilter";
 import { products } from "../../configs/products";
-import AddToCartBtn from "../../components/UI/AddToCartBtn";
-import { useAppSelector } from "../../redux/hooks";
-import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { filterProducts } from "../../utils/filters";
+import { resetValues } from "../../redux/filterSlice";
+import Pagination from "../../components/Pagination";
+import CatalogProductItem from "../../components/CatalogProductItem";
+import { IProduct } from "../../interfaces/components";
 
 const Catalog: React.FC = () => {
   const filter = useAppSelector((state) => state.filter);
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const filteredProducts = filterProducts(products, filter);
+  const [activePage, setActivePage] = React.useState(0);
 
-  const btnRef = React.useRef(null);
+  const productsOnPage = 9;
 
-  function selectPrice(salePrice: number | undefined, price: number) {
-    return !!salePrice ? salePrice : price;
+  // 60 товаров, активная страница 3 // itemsOnPage * ( activePage + 1 ),
+
+  function paginationFilter(products: IProduct[]) {
+    return products.splice(productsOnPage * activePage, productsOnPage);
   }
 
-  function handleItemClick(
-    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>,
-    id: number
-  ) {
-    console.log(e.target)
-    if (e.target !== btnRef.current) navigate(`/catalog/${id}`);
-  }
+  React.useEffect(() => {
+    dispatch(resetValues());
+  }, []);
 
   return (
     <S.Catalog>
@@ -35,57 +36,19 @@ const Catalog: React.FC = () => {
         <C.Title>Каталог</C.Title>
         <S.Container>
           <ProductsFilter />
-          <S.ProductsList>
-            {products
-              .filter((item) =>
-                filter.activeCategory === "all"
-                  ? item
-                  : item.category === filter.activeCategory
-              )
-              .filter(
-                (item) =>
-                  selectPrice(item.salePrice, item.price) >=
-                    filter.priceRange[0] &&
-                  selectPrice(item.salePrice, item.price) <=
-                    filter.priceRange[1]
-              )
-              .map((item, i) => (
-                //
-                <S.ProductItem
-                  key={item.id}
-                  onClick={(e) => handleItemClick(e, item.id)}
-                >
-                  <img
-                    src={`${window.location.origin}/assets/img/products/${item.imgs.folder}/${item.imgs.files[0]}`}
-                    alt=""
-                  />
-                  <p>{item.title}</p>
-                  <div className="bottom">
-                    {!!item.salePrice ? (
-                      <>
-                        <C.MainPrice>{item.salePrice} ₽</C.MainPrice>
-                        <C.SalePrice>{item.price} ₽</C.SalePrice>
-                      </>
-                    ) : (
-                      <C.MainPrice>{item.price} ₽</C.MainPrice>
-                    )}
-                    <AddToCartBtn
-                      ref={btnRef}
-                      item={{
-                        id: item.id,
-                        imgUrl: `${item.imgs.folder}/${item.imgs.files[0]}`,
-                        title: item.title,
-                        price: item.price,
-                        salePrice: !!item.salePrice ? item.salePrice : 0,
-                        count: 1,
-                      }}
-                    >
-                      <AiOutlineShoppingCart /> В корзину
-                    </AddToCartBtn>
-                  </div>
-                </S.ProductItem>
+          <S.ProductsListContainer>
+            <S.ProductsList>
+              {paginationFilter(filteredProducts).map((item) => (
+                <CatalogProductItem key={item.id} item={item} />
               ))}
-          </S.ProductsList>
+            </S.ProductsList>
+            <Pagination
+              productsCount={filteredProducts.length}
+              activePage={activePage}
+              setActivePage={setActivePage}
+              productsOnPage={productsOnPage}
+            />
+          </S.ProductsListContainer>
         </S.Container>
       </C.Wrapper>
     </S.Catalog>

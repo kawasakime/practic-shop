@@ -17,6 +17,7 @@ export default createGlobalStyle`
   }
 
   body {
+    position: relative;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     font-size: 16px;

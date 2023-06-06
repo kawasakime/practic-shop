@@ -1,42 +1,6 @@
 import React from "react";
 import { TCategories } from "../configs/config";
 
-export interface IConfig {
-  title: string;
-  colors: {
-    primary: string;
-    secondary: string;
-    teriary: string;
-  };
-  information: {
-    phone: string;
-    email: string;
-    workTime: string;
-    address: string;
-  };
-  social: {
-    vk: string;
-    telegram: string;
-    instagram: string;
-  };
-  navigation: { title: string; route: string; inFooter: boolean }[];
-  categories: { title: string; name: TCategories; img: string }[];
-  main: {
-    title: string;
-    descr: string;
-    btnText: string;
-  };
-  mailing: {
-    enable: boolean;
-    title: string;
-    btnText: string;
-  };
-  cart: {
-    maxProductsCount: number;
-  };
-  deliveryCost: number;
-}
-
 export interface SocialProps {
   marginLeft?: string;
 }
@@ -53,7 +17,7 @@ export interface ButtonProps {
   primary?: boolean;
   isFill?: boolean;
   children: React.ReactNode;
-  handleCLick?: () => void
+  handleCLick?: () => void;
 }
 
 export interface ICartItem {
@@ -102,15 +66,48 @@ export interface OrderDeliveryInfoProps {
 }
 
 export interface OrderCustomerInfoProps {
-  customerForm: ICustomerForm,
-  setCustomerForm: React.Dispatch<React.SetStateAction<ICustomerForm>>
+  customerForm: ICustomerForm;
+  setCustomerForm: React.Dispatch<React.SetStateAction<ICustomerForm>>;
 }
 
-export type TPriceFilter = [number | "", number | ""]
-export type TActiveCategoryFilter = 'all' | TCategories;
+export type TPriceRangeInput = [number | "", number | ""];
+export type TActiveCategoryFilter = "all" | TCategories;
 
 export interface IFilterSlice {
-  priceRange: TPriceFilter;
-  activeCategory: TActiveCategoryFilter
+  priceRange: [number, number];
+  activeCategory: TActiveCategoryFilter;
+  params: IProductParams[];
+  search: string;
 }
 
+export interface IFilterGroupParam {
+  key: string;
+  values: string[];
+}
+
+export interface IProductParams {
+  key: string;
+  value: string;
+}
+
+export interface IProduct {
+  id: number;
+  title: string;
+  description: string;
+  imgs: {
+    folder: string;
+    files: string[];
+  };
+  category: TCategories;
+  price: number;
+  salePrice?: number;
+  params: IProductParams[];
+}
+
+export interface IFIlterParamCheckboxProps {
+  name: string;
+  value: string;
+  setParams: (params: IProductParams[]) => void;
+  params: IProductParams[];
+  activeCategory: string;
+}

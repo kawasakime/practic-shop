@@ -7,7 +7,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   isFill = false,
   primary = false,
-  handleCLick
+  handleCLick,
 }) => {
   return (
     <S.Button isFill={isFill} primary={primary} onClick={handleCLick}>

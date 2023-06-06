@@ -12,6 +12,7 @@ import Catalog from "./pages/Catalog";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
+import Delivery from "./pages/Delivery";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/catalog/:productId" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/order" element={<Order />} />
-        <Route path="/products" element={<div></div>} />
+        <Route path="/delivery" element={<Delivery />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

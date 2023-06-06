@@ -1,13 +1,14 @@
-import { IConfig } from "../interfaces/components";
+import { IConfig } from "../interfaces/config";
 
 export type TCategories =
   | "scissors"
   | "combs"
   | "brushes"
   | "electronics"
-  | "cosmetics"
   | "razors"
-  | "other";
+  | "other"
+  | "brushing"
+  | "apron";
 
 export const config: IConfig = {
   // Название сайта (название вкладки в браузере)
@@ -81,9 +82,14 @@ export const config: IConfig = {
       img: "electronics.png",
     },
     {
-      title: "Косметика",
-      name: "cosmetics",
-      img: "cosmetics.png",
+      title: "Фартуки",
+      name: "apron",
+      img: "apron.png",
+    },
+    {
+      title: "Брашинги",
+      name: "brushing",
+      img: "brushing.png",
     },
     {
       title: "Бритвы",
