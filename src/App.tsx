@@ -14,6 +14,7 @@ import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import Delivery from "./pages/Delivery";
 import Payment from "./pages/Payment";
+import Contacts from "./pages/Contacts";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/order" element={<Order />} />
         <Route path="/delivery" element={<Delivery />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/contacts" element={<Contacts />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
