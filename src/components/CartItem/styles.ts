@@ -12,7 +12,9 @@ export const CartItem = styled.div`
   }
 
   img {
-    height: 100%;
+    max-height: 80px;
+    min-width: 100px;
+    object-fit: contain;
   }
 
   .title {
@@ -86,4 +88,10 @@ export const PriceContainer = styled.div`
   .price {
     margin-left: 20px;
   }
+`;
+
+export const Row = styled.div<{ flex: number; justify?: string }>`
+  display: flex;
+  flex: ${({ flex }) => flex};
+  justify-content: ${({ justify = "space-between" }) => justify};
 `;

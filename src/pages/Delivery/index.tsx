@@ -21,6 +21,7 @@ const Delivery: React.FunctionComponent<IDeliveryProps> = (props) => {
             <S.GridRow>
               <p>{item.method}</p>
               <p>{item.cost}</p>
+              <p>{item.time}</p>
             </S.GridRow>
           ))}
         </S.DeliveryContainer>

@@ -125,6 +125,7 @@ export const MainPrice = styled.h3`
   font-size: 18px;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   white-space: nowrap;
+  margin-top: 10px;
 `;
 
 export const Input = styled.input<{ width: string }>`
